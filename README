@@ -1,3 +1,7 @@
 
+`git clone`
 
+`cd terraform`
+
+`terraform init -upgrade`
 ## Ecrivez ici les inscriptions et explications pour déployer l'infrastructure et l'application sur Azure
