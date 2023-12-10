@@ -1,24 +1,47 @@
 
-`git clone`
+Message to the professeur : We didnt reussir to finish the projet. But we espère that the travail we've done is not si mauvais. Have a bonne journée 👋
+(Et good fêtes de fin de year ! 🎄🎅)  
+*Signé 2 students very fatigued*
 
+# Instructions
+
+**Download the ZIP and cd into the project.**
+
+Login to Azure
+`az login`
+
+Go into the Terraform folder
 `cd terraform`
 
+Init Terraform
 `terraform init -upgrade`
 
+Plan
 `terraform plan -out main.tfplan`
 
+Apply
 `terraform apply main.tfplan`
 
+*The Azure infrastructure should be up and running.*
+
+Go back to the project root
 `cd ..`
 
+Login to your Azure Registry
 `az acr login --name <registryName>`
-(esgiacr.azurecr.io)
+(name eg: esgiacr.azurecr.io)
 
+Go into the web app folder
 `cd flask-app`
 
+Build the Dockfile as an image
 `docker build . -t flaskapp`
 
+Tag the image with the registry name
 `docker tag flaskapp <registryName/imageName:tag>`
-(esgiacr.azurecr.io/flaskapp:latest)
+(eg: esgiacr.azurecr.io/flaskapp:latest)
 
+Push the image to your Azure Registry
 `docker push <registryName/imageName:tag>`
+
+From now, the image should be in ACR. 
