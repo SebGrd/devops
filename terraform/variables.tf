@@ -27,3 +27,9 @@ variable "kube_cluster_dns_prefix" {
   default     = "esgikube"
   description = "Kubernetese DNS prefix."
 }
+
+variable "publicip_name" {
+  type        = string
+  default     = "esgipublicip"
+  description = "Public IP name."
+}

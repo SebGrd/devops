@@ -31,3 +31,10 @@ resource "azurerm_kubernetes_cluster" "kube" {
     Environment = "Production"
   }
 }
+
+resource "azurerm_public_ip" "publicip" {
+  name                = var.publicip_name
+  resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
+  allocation_method   = "Static"
+}
