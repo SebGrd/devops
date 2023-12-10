@@ -11,6 +11,8 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled       = false
 }
 
+
+
 resource "azurerm_kubernetes_cluster" "kube" {
   name                = var.kube_cluster_name
   location            = var.resource_group_location
@@ -27,9 +29,8 @@ resource "azurerm_kubernetes_cluster" "kube" {
     type = "SystemAssigned"
   }
 
-  tags = {
-    Environment = "Production"
-  }
+  role_based_access_control_enabled = true
+
 }
 
 resource "azurerm_public_ip" "publicip" {
@@ -37,4 +38,11 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
   allocation_method   = "Static"
+}
+
+resource "azurerm_role_assignment" "kubeacrpull" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_kubernetes_cluster.kube.kubelet_identity[0].object_id
+  skip_service_principal_aad_check = true
 }
