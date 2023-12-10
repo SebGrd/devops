@@ -15,3 +15,15 @@ variable "registry_name" {
   default     = "ESGIacr"
   description = "Registry ressource name."
 }
+
+variable "kube_cluster_name" {
+  type        = string
+  default     = "ESGIkubecluster"
+  description = "Kubernetese cluster name."
+}
+
+variable "kube_cluster_dns_prefix" {
+  type        = string
+  default     = "esgikube"
+  description = "Kubernetese DNS prefix."
+}
