@@ -9,3 +9,9 @@ variable "resource_group_name" {
   default     = "rg-ESGI-criniergaudard"
   description = "Ressource group name."
 }
+
+variable "registry_name" {
+  type        = string
+  default     = "ESGIacr"
+  description = "Registry ressource name."
+}
