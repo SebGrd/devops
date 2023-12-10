@@ -1,3 +1,6 @@
+data "azuread_client_config" "current" {}
+
+
 resource "azurerm_resource_group" "rg" {
   location = var.resource_group_location
   name     = var.resource_group_name
@@ -45,4 +48,10 @@ resource "azurerm_role_assignment" "kubeacrpull" {
   role_definition_name = "AcrPull"
   principal_id         = azurerm_kubernetes_cluster.kube.kubelet_identity[0].object_id
   skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "useracrpush" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPush"
+  principal_id         = data.azuread_client_config.current.object_id
 }

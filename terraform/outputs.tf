@@ -11,3 +11,7 @@ output "kube_config" {
   value = azurerm_kubernetes_cluster.kube.kube_config_raw
   sensitive = true
 }
+
+output "account_id" {
+  value = data.azuread_client_config.current.object_id
+}

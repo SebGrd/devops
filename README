@@ -4,4 +4,21 @@
 `cd terraform`
 
 `terraform init -upgrade`
-## Ecrivez ici les inscriptions et explications pour déployer l'infrastructure et l'application sur Azure
+
+`terraform plan -out main.tfplan`
+
+`terraform apply main.tfplan`
+
+`cd ..`
+
+`az acr login --name <registryName>`
+(esgiacr.azurecr.io)
+
+`cd flask-app`
+
+`docker build . -t flaskapp`
+
+`docker tag flaskapp <registryName/imageName:tag>`
+(esgiacr.azurecr.io/flaskapp:latest)
+
+`docker push <registryName/imageName:tag>`
