@@ -4,10 +4,10 @@ metadata:
   name: flask-app-redis
 spec:
   containers:
-  - name: redis
+  - name: flask-app
     image: redis
     volumeMounts:
-    - name: redis-storage
+    - name: task-pv-storage
       mountPath: /data/redis
   volumes:
   - name: task-pv-storage
